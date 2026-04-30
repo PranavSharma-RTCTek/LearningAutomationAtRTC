@@ -1,6 +1,14 @@
 import { test, expect } from '@playwright/test';
+import * as allure from 'allure-js-commons';
 
 test('fillForm', async ({ page }) => {
+  allure.epic('Authentication');
+  allure.feature('Form FIlling');
+  allure.story('Valid User Login');
+  allure.severity('critical');
+  allure.owner('Pranav');
+  allure.tag('smoke');
+
   await page.goto('https://demoqa.com/');
 
   // Expect a title "to contain" a substring.
@@ -42,7 +50,7 @@ test('fillForm', async ({ page }) => {
   await page.locator("//*[@id='uploadPicture']").setInputFiles("C:\\Users\\pranav.sharma\\Downloads\\Tree.PNG");
 
   await expect(page.locator("//*[@id = 'currentAddress']")).toBeVisible();
-  await page.locator("//*[@id = 'currentAddress']").fill("707 S. Lindon Ln.\nTempe,\nAZ");
+  await page.locator("//*[@id = 'currentAddress']").fill("707 S. Lindon Ln., Tempe, AZ");
 
   await expect(page.locator("//*[@id='state']")).toBeVisible();
   await page.locator("//*[@id='state']").click();
@@ -58,7 +66,7 @@ test('fillForm', async ({ page }) => {
 
   await expect(page.locator("//*[@id = 'submit']")).toBeVisible();
   await page.locator("//*[@id = 'submit']").click();
-  await page.waitForTimeout(10_000);
+  await page.waitForTimeout(5_000);
 
 });
 
