@@ -1,5 +1,16 @@
 import { test, expect } from '@playwright/test';
-import * as allure from 'allure-js-commons';
+//import * as allure from 'allure-js-commons';
+
+import { allure } from 'allure-playwright';
+
+import {
+  epic,
+  feature,
+  story,
+  severity,
+  owner,
+  tag
+} from 'allure-js-commons';
 
 test('fillForm', async ({ page }) => {
   allure.epic('Authentication');
@@ -10,6 +21,9 @@ test('fillForm', async ({ page }) => {
   allure.tag('smoke');
 
   await page.goto('https://demoqa.com/');
+
+  const screenshot = await page.screenshot();
+  await allure.attachment("Checkpoint Screenshot", screenshot, "image/png");
 
   // Expect a title "to contain" a substring.
   page.locator("//*[@ href='/forms']").click();
@@ -66,6 +80,10 @@ test('fillForm', async ({ page }) => {
 
   await expect(page.locator("//*[@id = 'submit']")).toBeVisible();
   await page.locator("//*[@id = 'submit']").click();
+
+  const screenshot1 = await page.screenshot();
+  await allure.attachment("Checkpoint Screenshot", screenshot1, "image/png");
+
   await page.waitForTimeout(5_000);
 
 });
