@@ -19,6 +19,25 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
+    - name: Generate Allure Report
+      if: ${{ !cancelled() }}
+      run: npx allure generate allure-results --clean -o allure-report
+    - name: Zip Allure Report
+      if: ${{ !cancelled() }}
+      run: zip -r allure-report.zip allure-report/
+    - name: Send Email with Report
+      if: ${{ !cancelled() }}
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.office365.com
+        server_port: 587
+        username: ${{ secrets.OUTLOOK_EMAIL }}
+        password: ${{ secrets.OUTLOOK_PASSWORD }}
+        subject: "Playwright Test Report - ${{ github.repository }}"
+        to: ${{ secrets.OUTLOOK_EMAIL }}
+        from: ${{ secrets.OUTLOOK_EMAIL }}
+        body: "Test run completed. Allure report attached."
+        attachments: allure-report.zip
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

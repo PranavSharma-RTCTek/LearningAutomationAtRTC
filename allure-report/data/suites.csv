@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","14873","fillForm","webkit","2026-05-04","passed","2026-05-04","","ArtificialDemoQA.spec.ts","",""
+"","13852","fillForm","firefox","2026-04-30","passed","2026-04-30","","DemoQA.spec.ts","",""
+"","13510","fillForm","chromium","2026-04-30","passed","2026-04-30","","DemoQA.spec.ts","",""
+"","18751","fillForm","webkit","2026-05-04","passed","2026-05-04","","DemoQA.spec.ts","",""
